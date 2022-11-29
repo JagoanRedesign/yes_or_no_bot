@@ -53,8 +53,9 @@ def say_hi(update, context):
         answer_gif = get_answer_gif(user_message)
     else:
         context.bot.send_message(
-            chat_id=chat.id,
-            text=f'Tidak ada gif untuk jawaban ini')
+            
+
+)
 
 
 def wake_up(update, context):
