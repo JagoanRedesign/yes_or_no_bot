@@ -11,12 +11,12 @@ token = os.getenv('TOKEN')
 
 
 url = 'https://yesno.wtf/api?force='
-answers_list = ['да', 'нет', 'yes', 'no']
-help_words = ['помощь', 'help', '/help', '?']
+answers_list = ['ya', 'tidak', 'yes', 'no']
+help_words = ['bantuan', 'help', '/help', '?']
 
 def get_eng_answer(answer):
     if answer in answers_list[0:2]:
-        if answer == 'да':
+        if answer == 'ya':
             return 'yes'
         else:
             return 'no'
@@ -36,11 +36,11 @@ def say_hi(update, context):
     if user_message in answers_list:
         context.bot.send_message(
             chat_id=chat.id,
-            text=(f'Ожидайте.. (если ответа долго нет попробуйте еще раз)'))
+            text=(f'Tunggu.. (jika lama tidak ada jawaban, coba lagi)'))
         answer_gif = get_answer_gif(user_message)
         context.bot.send_message(
             chat_id=chat.id,
-            text=(f'Вот ваша гифка для ответа {user_message}:'))
+            text=(f'Ini gif Anda untuk jawabannya {user_message}:'))
 
         context.bot.send_document(
             chat_id=chat.id,
@@ -48,25 +48,25 @@ def say_hi(update, context):
     elif user_message in help_words:
         context.bot.send_message(
             chat_id=chat.id,
-            text=(f'Для получения гифки с анимацией Да или Нет'
-                   ' напишите Да или Нет или нажмите соответствующую кнопку'))
+            text=(f'Untuk mendapatkan GIF dengan animasi Ya atau Tidak'
+                   ' ketik Ya atau Tidak atau tekan tombol yang sesuai'))
         answer_gif = get_answer_gif(user_message)
     else:
         context.bot.send_message(
             chat_id=chat.id,
-            text=f'Для такого ответа нет гифки')
+            text=f'Tidak ada gif untuk jawaban ini')
 
 
 def wake_up(update, context):
     chat = update.effective_chat
     button = ReplyKeyboardMarkup([
-                                ['да', 'нет'],
-                                ['помощь']
+                                ['ya', 'tidak'],
+                                ['bantuan']
                                 ])
     context.bot.send_message(chat_id=chat.id, 
-                             text='Спасибо, что включили меня. '
-                             'Для получения гифки напишите "да" или "нет", '
-                             'или нажмите соответствующую кнопку',
+                             text='Terima kasih telah menggunakan bot ini.'
+                             'Untuk menerima GIF, ketik "ya" atau "tidak", '
+                             'atau klik tombol yang sesuai',
                              reply_markup=button)
 
 
